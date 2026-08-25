@@ -1,0 +1,139 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * NEON STREET ARCADE design system.
+ * Saturated neon purple / cyan / yellow on dark comic-book backdrops,
+ * thick black outlines, graffiti energy.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon: var(--neon);
+  --color-cyan: var(--cyan);
+  --color-lime: var(--lime);
+  --color-ink: var(--ink);
+  --font-display: "Bungee", system-ui, sans-serif;
+  --font-body: "Rubik", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.16 0.06 300);
+  --foreground: oklch(0.98 0.02 100);
+  --card: oklch(0.22 0.09 300);
+  --card-foreground: oklch(0.98 0.02 100);
+  --popover: oklch(0.22 0.09 300);
+  --popover-foreground: oklch(0.98 0.02 100);
+  --primary: oklch(0.62 0.29 315);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.78 0.17 200);
+  --secondary-foreground: oklch(0.15 0.05 300);
+  --muted: oklch(0.3 0.06 300);
+  --muted-foreground: oklch(0.78 0.04 300);
+  --accent: oklch(0.88 0.2 100);
+  --accent-foreground: oklch(0.15 0.05 300);
+  --destructive: oklch(0.63 0.26 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.08 0.02 300);
+  --input: oklch(0.3 0.06 300);
+  --ring: oklch(0.78 0.17 200);
+  --neon: oklch(0.62 0.29 315);
+  --cyan: oklch(0.82 0.17 200);
+  --lime: oklch(0.9 0.21 110);
+  --ink: oklch(0.08 0.02 300);
+  --shadow-comic: 4px 4px 0 var(--ink);
+  --shadow-comic-lg: 8px 8px 0 var(--ink);
+  --gradient-street: linear-gradient(160deg, oklch(0.3 0.14 320), oklch(0.14 0.05 280) 60%);
+}
+
+.dark {
+  --background: oklch(0.16 0.06 300);
+  --foreground: oklch(0.98 0.02 100);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@utility comic-outline {
+  border: 4px solid var(--ink);
+  box-shadow: var(--shadow-comic);
+}
+
+@utility comic-outline-lg {
+  border: 5px solid var(--ink);
+  box-shadow: var(--shadow-comic-lg);
+}
+
+@utility text-stroke {
+  -webkit-text-stroke: 3px var(--ink);
+  paint-order: stroke fill;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.6) rotate(-6deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08) rotate(2deg);
+  }
+  100% {
+    transform: scale(1) rotate(-2deg);
+    opacity: 1;
+  }
+}
+
+@keyframes shake-slow {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@utility animate-pop-in {
+  animation: pop-in 0.35s cubic-bezier(0.2, 1.4, 0.5, 1) both;
+}
+
+@utility animate-tilt {
+  animation: shake-slow 2.4s ease-in-out infinite;
+}
